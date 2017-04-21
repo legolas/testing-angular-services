@@ -9,7 +9,6 @@ describe("UserService", () => {
     let subject: UserService;
     let backend: MockBackend;
 
-    // beforeEachProviders();
     beforeEach(() => {
 
         TestBed.configureTestingModule({
