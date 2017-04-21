@@ -2,7 +2,7 @@ import { inject, TestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
+import { BaseRequestOptions, Http, RequestMethod, Response, ResponseOptions } from '@angular/http';
 
 describe("UserService", () => {
 
@@ -44,11 +44,22 @@ describe("UserService", () => {
                 body: JSON.stringify({success: true})
             });
             connection.mockRespond(new Response(options));
+
+            // Check the request method
+            expect(connection.request.method).toEqual(RequestMethod.Post);
+            // Check the url
+            expect(connection.request.url).toEqual("/login");
+            // Check the body
+            // expect(connection.request.text())
+            expect(connection.request.text()).toEqual(JSON.stringify({username: "admin", password: "secret"}));
+            // Check the request headers
+            expect(connection.request.headers.get("Content-Type")).toEqual("application/json");
         });
 
         subject
             .login({username: "admin", password: "secret"})
             .subscribe((response) => {
+                // Check the response
                 expect(response.json()).toEqual({success: true});
                 done();
             })
