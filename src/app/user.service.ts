@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -13,7 +14,7 @@ export class UserService {
         return this.loggedIn
     }
 
-    login(credentials) {
+    login(credentials): Observable<Response> {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
 
