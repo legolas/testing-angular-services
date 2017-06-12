@@ -2,6 +2,7 @@ import { inject, TestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+// Make sure to include the Response object from '@angular/http'
 import { BaseRequestOptions, Http, RequestMethod, Response, ResponseOptions } from '@angular/http';
 
 describe("UserService", () => {
